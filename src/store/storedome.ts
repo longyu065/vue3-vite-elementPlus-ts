@@ -158,6 +158,7 @@ const store = createStore<GlobalDataProps>({
       return asyncAndCommit('/user/current', 'fetchCurrentUser', commit)
     },
     login({ commit }, payload) {
+      debugger;
       return asyncAndCommit('/user/login', 'login', commit, { method: 'post', data: payload })
     },
     createPost({ commit }, payload) {
@@ -181,5 +182,5 @@ const store = createStore<GlobalDataProps>({
     }
   }
 })
- 
+
 export default store

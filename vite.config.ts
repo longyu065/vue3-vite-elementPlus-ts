@@ -24,7 +24,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
   const viteEnv = wrapperEnv(env)
-  
+
   const {
     VITE_PORT,
     VITE_USE_MOCK,
@@ -65,7 +65,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     server: {
       //服务器主机名
-      host: '',
+      host: '127.0.0.1',
       //端口号
       port: VITE_PORT,
       //设为 true 时若端口已被占用则会直接退出，而不是尝试下一个可用端口
@@ -73,14 +73,14 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       //服务器启动时自动在浏览器中打开应用程序,当此值为字符串时，会被用作 URL 的路径名
       open: false,
       //自定义代理规则
-      // proxy: {
-      //   // 选项写法
-      //   '/api': {
-      //     target: 'http://test.zt.guangquzhihe.com/',
-      //     changeOrigin: true,
-      //     rewrite: (path) => path.replace(/^\/api/, '')
-      //   }
-      // }
+      proxy: {
+        // 选项写法
+        '/api': {
+          target: 'http://127.0.0.1:8090/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
+      }
     },
     build: {
       outDir:'csdata'

@@ -154,7 +154,15 @@ const uuid = (len: number, radix: number): string => {
 
     return uuid.join('').toLowerCase();
 };
-
+const generateUUID = ()  => {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+}
 // 价格格式化(分到元)
 const priceFilter = (num: number | string): number => {
     if (!num) return 0;
@@ -342,7 +350,7 @@ const textTohtml = (text: string): string => {
 };
 
 export {
-    os, fillZero, add, subtract, multiply, divide, uuid, phoneFilter, readMore, priceFilter,
+    os, fillZero, add, subtract, multiply, divide, uuid,generateUUID, phoneFilter, readMore, priceFilter,
     adjustTime, countDown, queryParse, queryConcat, trimEmpty, textTohtml,
     decimalFormat
 };
