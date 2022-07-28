@@ -28,8 +28,11 @@ import td from '../../assets/image/map/images/3d.png'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {addLayer} from './switch';
-import "@/plugins/leaflet-plugin/L.Control.MousePosition"
+import "@/plugins/leaflet-plugin/L.Control.MousePosition";
+import {WebOption,WebsocketHeartbeatJs} from '@/utils/WebsocketHeartbeatJs';
 
+//建立websocket
+const websocketHeartbeatJs = new WebsocketHeartbeatJs({url:''})
 
 
 const switchFlag = ref(false);
@@ -41,8 +44,6 @@ onMounted(() => {
   // 初始化地图
   initMap();
 })
-
-
 
 const initMap = ()=>{
   let map = L.map('map2', {

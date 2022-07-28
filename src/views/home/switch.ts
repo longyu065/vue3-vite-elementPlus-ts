@@ -293,7 +293,7 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 //     return this;
 // }
 
-const addLayer = (map,mapType) =>{
+const addLayer = (map:any,mapType:string) =>{
     var mapZoom = 18, layerZoom = 18;
     // 地形
     if (mapType == 'ter') {

@@ -6,14 +6,10 @@
     <a href="https://jestjs.io"><img src="https://github.com/openlayers/openlayers/workflows/Test/badge.svg" alt="Test Status"></a>
 </p>
 
-## 数据管理平台(skeletal-sys)
+## 
 
 ## 简介
 
-数据管理平台：集成数据管理，文档管理，项目管理等功能模块
-涉及模块，菜单，操作功能权限管理分配等功能模块，目前该系统
-为初版骨架型，未涉及太多其它功能模块，只有搭建了一个大的
-骨架，其它功能模块需要自行添加完善,自由发挥
 
 ## 目录结构
 
@@ -101,7 +97,3 @@ yarn build or npm run build
 本地开发推荐使用`Chrome 80+` 浏览器
 
 支持现代（chrome，Firefox，Microsoft edge，etc.）浏览器, 不支持 IE
-
-## 在线预览
-
-https://www.benpaodehenji.com/csdata

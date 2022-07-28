@@ -33,6 +33,7 @@ declare module '*.vue' {
   export default Component
 }
 
+
 interface Array {
   arrDel(params: any): Array
 }
