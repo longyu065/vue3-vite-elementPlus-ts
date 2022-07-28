@@ -8,6 +8,7 @@
  */
 import { createStore, Commit } from 'vuex'
 import axios, { AxiosRequestConfig } from 'axios'
+import {getToken} from "@/utils/auth";
 export interface ResponseType<P = {}> {
   code: number;
   msg: string;
@@ -72,7 +73,7 @@ const asyncAndCommit = async(url: string, mutationName: string,
 }
 const store = createStore<GlobalDataProps>({
   state: {
-    token: localStorage.getItem('token') || '',
+    token: localStorage.getItem('token')||getToken('token') || '',
     error: { status: false },
     loading: false,
     columns: { data: {}, currentPage: 0, total: 0 },

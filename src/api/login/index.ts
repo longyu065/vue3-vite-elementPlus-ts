@@ -1,11 +1,14 @@
 import request from '@/utils/request';
-
+import * as qs from 'qs';
 // 用户登录
 export function signIn(params: object) {
 	return request({
-		url: '/user/login',
+		url: '/login',
 		method: 'post',
-		data: params,
+		data: qs.stringify(params),
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
 	});
 }
 

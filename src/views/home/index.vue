@@ -30,9 +30,26 @@ import "leaflet/dist/leaflet.css";
 import {addLayer} from './switch';
 import "@/plugins/leaflet-plugin/L.Control.MousePosition";
 import {WebOption,WebsocketHeartbeatJs} from '@/utils/WebsocketHeartbeatJs';
+import store from 'store/index'
+const token = store.state.user.token;
 
+let webOption = new WebOption();
+webOption.url = "ws://" + "127.0.0.1:8980" + "/websocket/map" + "/" + token,
+webOption.onmessage = (event:MessageEvent) => {
+  console.log(event.data);
+  // port偏移
+  if(event.data){
+    let data = JSON.parse(event.data);
+    if (data.type == "MARKER_OFFSET") {
+    //  updateMarker(data.data);
+      console.log(data.data)
+    } else if (data.type == "MARKER_ALERT") {
+
+    }
+  }
+}
 //建立websocket
-const websocketHeartbeatJs = new WebsocketHeartbeatJs({url:''})
+const websocketHeartbeatJs = new WebsocketHeartbeatJs(webOption)
 
 
 const switchFlag = ref(false);

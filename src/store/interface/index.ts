@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue'
 import type { RouteRecordNormalized, RouteRecordRaw } from 'vue-router'
 /**
- * typescript 
- * 官网 https://www.tslang.cn/docs/home.html 
+ * typescript
+ * 官网 https://www.tslang.cn/docs/home.html
  * 博客 https://blog.csdn.net/qq_40280582/article/details/112444461
  */
 type Component<T extends any = any> =
@@ -76,6 +76,7 @@ export interface Userinfo{
   avatar: string,
   roles: Array<any>,
   permissions: Array<any>,
+  token: string
 }
 
 export interface permissionListState {

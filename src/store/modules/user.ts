@@ -5,17 +5,17 @@ import {
     setToken,
     removeToken
 } from '../../utils/auth'
+import {hex_md5} from '@/utils/md5'
+import {signIn} from "@/api/login";
 
-const SIMULATE_USER_TOKEN = 'USER-TOKEN'
+const SIMULATE_USER_TOKEN = 'USER-TOKEN'//USER-TOKEN
 const userstate: Module<Userinfo, RootStateTypes> = {
-    state() {
-        return {
-            // token: getToken()
+    state: {
+            token: getToken(SIMULATE_USER_TOKEN)||'',
             name: '',
             avatar: '',
             roles: [],
             permissions: []
-        }
     },
     mutations: {
         SET_TOKEN: (state: any, token: any) => {
@@ -39,24 +39,25 @@ const userstate: Module<Userinfo, RootStateTypes> = {
         Login({
                   commit
               }: any, userInfo: any) {
-            const username = userInfo.username.trim()
-            const password = userInfo.password
+            const account = userInfo.username.trim()
+            console.log(hex_md5(userInfo.password))
+            const password = hex_md5(userInfo.password)
             const code = userInfo.code
-            const uuid = userInfo.uuid
+            const id = userInfo.uuid
             return new Promise((resolve: any, reject: any) => {
-                var simulateToken = 'fdsakjahkhfdjasdhlafdslkdfl'
-                // 模拟登录
-                setToken(SIMULATE_USER_TOKEN, simulateToken)
-                commit('SET_TOKEN', 'fdsakjahkhfdjasdhlafdslkdfl')
-                resolve('恭喜你登录成功')
+                // var simulateToken = 'fdsakjahkhfdjasdhlafdslkdfl'
+                // // 模拟登录
+                // setToken(SIMULATE_USER_TOKEN, simulateToken)
+                // commit('SET_TOKEN', 'fdsakjahkhfdjasdhlafdslkdfl')
+                // resolve('恭喜你登录成功')
                 // 生产环境调用登录接口
-                // login(username, password, code, uuid).then((res:any) => {
-                //   setToken(res.token)
-                //   commit('SET_TOKEN', res.token)
-                //   resolve()
-                // }).catch((error:any) => {
-                //   reject(error)
-                // })
+                signIn({account, password, code, id}).then((res:any) => {
+                    setToken(SIMULATE_USER_TOKEN, res.token)
+                    commit('SET_TOKEN', res.token)
+                    resolve('恭喜你登录成功')
+                }).catch((error:any) => {
+                  reject(error)
+                })
             })
         },
 

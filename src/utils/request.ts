@@ -41,7 +41,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const res = response.data
-    if (res.code && res.code !== 0) {
+    if (res.code && res.code != 200) {
       // `token` 过期或者账号已在别处登录
       if (res.code === 401 || res.code === 4001) {
         window.sessionStorage.clear() // 清除浏览器全部临时缓存
